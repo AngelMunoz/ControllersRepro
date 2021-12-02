@@ -9,29 +9,26 @@ open Browser.Dom
 open Pages.Home
 open Pages.Notes
 
-Fable.Core.JsInterop.importSideEffects "./Controllers/controllers.js"
-
 [<HookComponent>]
 let private app () =
-  let state, setState = Hook.useState Page.Home
+    let state, setState = Hook.useState Page.Home
 
-  let onBackRequested _ = printfn "Back requested"
+    let onBackRequested _ = printfn "Back requested"
 
-  let goToPage (ev: CustomEvent<Page>) =
-    let page = defaultArg ev.detail Page.Home
-    setState page
+    let goToPage (ev: CustomEvent<Page>) =
+        let page = defaultArg ev.detail Page.Home
+        setState page
 
-  let getPage page =
-    match page with
-    | Page.Home -> Home()
-    | Page.Notes -> Notes()
+    let getPage page =
+        match page with
+        | Page.Home -> Home()
+        | Page.Notes -> Notes()
 
-  html
-    $"""
+    html
+        $"""
      <flit-navbar @go-back={onBackRequested} @go-to-page={goToPage}></flit-navbar>
     {getPage state}
-    <my-controlled-element></my-controlled-element>
   """
 
 let start () =
-  Lit.render (document.querySelector "#lit-app") (app ())
+    Lit.render (document.querySelector "#lit-app") (app ())

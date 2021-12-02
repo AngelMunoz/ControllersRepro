@@ -47,6 +47,8 @@ let private NavBar () =
         // uncomment and move this line to the html string
         //Cursor Position: {mouseCtrl.x} - {mouseCtrl.y}
         $"""
+    <!-- This Lit "native" component works completely fine -->
+    <my-controlled-element></my-controlled-element>
     <button @click={goback}>Back</button>
     <button @click={gotoPage Page.Home}>Home</button>
     <button @click={gotoPage Page.Notes}>Notes</button>
